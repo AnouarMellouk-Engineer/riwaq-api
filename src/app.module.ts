@@ -9,6 +9,7 @@ import { Student } from './entities/studentProfile.entity';
 import { Teacher } from './entities/teacherProfile.entity';
 import { Class } from './entities/class.entity';
 import { ClassField } from './entities/classField.entity';
+import { AuthModule } from './auth/auth.module';
 
 @Module({
   imports: [
@@ -31,6 +32,7 @@ import { ClassField } from './entities/classField.entity';
       //  autoLoadEntities: true,
       synchronize: true,
     }),
+    AuthModule,
   ],
   controllers: [AppController],
   providers: [AppService],

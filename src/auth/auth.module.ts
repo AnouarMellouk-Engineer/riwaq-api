@@ -6,7 +6,7 @@ import { User } from 'src/entities/user.entity';
 import { School } from 'src/entities/school.entity';
 
 @Module({
-  imports: [TypeOrmModule.forFeature([User,School])],
+  imports: [TypeOrmModule.forFeature([User, School])],
   controllers: [AuthController],
   providers: [AuthService],
 })

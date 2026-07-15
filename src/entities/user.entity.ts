@@ -34,7 +34,7 @@ export class User {
   @Column()
   lastName!: string;
 
-  @Column()
+  @Column({ unique: true })
   @Index()
   email!: string;
 
@@ -44,7 +44,7 @@ export class User {
   @Column()
   password!: string;
 
-  @Column()
+  @Column({ nullable: true })
   imageUrl!: string;
 
   @Column({

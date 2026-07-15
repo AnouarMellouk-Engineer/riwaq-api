@@ -1,6 +1,6 @@
 import * as z from 'zod';
 
-const createNewTenantSchema = z.object({
+export const createNewTenantSchema = z.object({
   firstName: z.string().min(1),
   lastName: z.string().min(1),
   email: z.email(),
@@ -9,4 +9,4 @@ const createNewTenantSchema = z.object({
   schoolName: z.string().min(1),
 });
 
-export type CreatenewTenantDto = z.infer<typeof createNewTenantSchema>;
+export type CreateNewTenantDto = z.infer<typeof createNewTenantSchema>;

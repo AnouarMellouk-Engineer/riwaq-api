@@ -29,13 +29,21 @@ export class School {
   @Column()
   name!: string;
 
-  @Column()
+  @Column({ unique: true })
   slug!: string;
 
-  @Column({ type: 'enum', enum: SubsriptionPlan })
+  @Column({
+    type: 'enum',
+    enum: SubsriptionPlan,
+    default: SubsriptionPlan.FREE,
+  })
   subcriptionPlan!: SubsriptionPlan;
 
-  @Column({ type: 'enum', enum: SubsriptionStatus })
+  @Column({
+    type: 'enum',
+    enum: SubsriptionStatus,
+    default: SubsriptionStatus.ACTIVE,
+  })
   SubsriptionStatus!: SubsriptionStatus;
 
   @CreateDateColumn()
@@ -44,7 +52,7 @@ export class School {
   @UpdateDateColumn()
   updatedAt!: Date;
 
-  @OneToMany(() => User, (user) => user.school)
+  @OneToMany(() => User, (user) => user.school, { cascade: true })
   users!: User[];
 
   @OneToMany(() => Notification, (notification) => notification.school)
