@@ -5,8 +5,10 @@ import {
   OneToOne,
   JoinColumn,
   Index,
+  OneToMany,
 } from 'typeorm';
 import { User } from './user.entity';
+import { TeachingAssignement } from './teachingAssignement.entity';
 
 export enum Module {
   ARABIC = 'ARABIC',
@@ -27,4 +29,7 @@ export class Teacher {
   @JoinColumn()
   @Index()
   user!: User;
+
+  @OneToMany(() => TeachingAssignement, (c) => c.teacher)
+  classes!: TeachingAssignement[];
 }

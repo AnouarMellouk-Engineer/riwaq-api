@@ -3,10 +3,12 @@ import {
   Entity,
   Index,
   JoinColumn,
+  ManyToOne,
   OneToOne,
   PrimaryGeneratedColumn,
 } from 'typeorm';
 import { User } from './user.entity';
+import { Class } from './class.entity';
 
 @Entity()
 export class Student {
@@ -17,4 +19,7 @@ export class Student {
   @JoinColumn()
   @Index()
   user!: User;
+
+  @ManyToOne(() => Class, (c) => c.students)
+  classs!: Class;
 }

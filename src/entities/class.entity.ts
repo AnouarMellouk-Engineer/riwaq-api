@@ -3,11 +3,14 @@ import {
   CreateDateColumn,
   Entity,
   ManyToOne,
+  OneToMany,
   OneToOne,
   PrimaryGeneratedColumn,
 } from 'typeorm';
 import { School } from './school.entity';
 import { ClassField } from './classField.entity';
+import { Student } from './studentProfile.entity';
+import { TeachingAssignement } from './teachingAssignement.entity';
 
 export enum Stage {
   PRIMARY = 'PRIMARY',
@@ -36,4 +39,10 @@ export class Class {
 
   @OneToOne(() => ClassField)
   classFiled!: ClassField;
+
+  @OneToMany(() => Student, (student) => student.classs)
+  students!: Student[];
+
+  @OneToMany(() => TeachingAssignement, (t) => t.classs)
+  teachers!: TeachingAssignement[];
 }
