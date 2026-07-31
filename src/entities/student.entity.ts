@@ -17,12 +17,12 @@ export class Student {
   @Column({ type: 'date' })
   dateOfBirth!: Date;
 
-  @ManyToOne(() => School)
+  @ManyToOne(() => School, { onDelete: 'CASCADE' })
   school!: School;
 
   @ManyToOne(() => User)
   parent!: User;
 
-  @ManyToOne(() => Class)
+  @ManyToOne(() => Class, { onDelete: 'SET NULL' })
   class!: Class;
 }

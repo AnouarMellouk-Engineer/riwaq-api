@@ -73,7 +73,7 @@ export class User {
   @ManyToOne(() => School)
   school!: School;
 
-  @ManyToMany(() => Class)
+  @ManyToMany(() => Class, { onDelete: 'CASCADE' })
   @JoinTable()
   classes!: Class[];
 }

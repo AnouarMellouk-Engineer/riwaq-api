@@ -36,9 +36,9 @@ export class Class {
   @Column('int')
   number!: number;
 
-  @ManyToOne(() => School)
+  @ManyToOne(() => School, { onDelete: 'CASCADE' })
   school!: School;
 
-  @ManyToMany(() => User)
+  @ManyToMany(() => User, { onDelete: 'SET NULL' })
   teachers!: User[];
 }
