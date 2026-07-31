@@ -3,7 +3,7 @@ import {
   CreateDateColumn,
   Entity,
   ManyToOne,
-  OneToOne,
+  OneToMany,
   PrimaryGeneratedColumn,
 } from 'typeorm';
 import { Plan } from './plan.entity';
@@ -33,6 +33,6 @@ export class School {
   @ManyToOne(() => Plan)
   plan!: Plan;
 
-  @OneToOne(() => Class)
+  @OneToMany(() => Class, (c) => c.school)
   classes!: Class[];
 }
