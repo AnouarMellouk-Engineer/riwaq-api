@@ -7,6 +7,7 @@ import { Class } from './entities/class.entity';
 import { Plan } from './entities/plan.entity';
 import { Student } from './entities/student.entity';
 import { User } from './entities/user.entity';
+import { PlanModule } from './plan/plan.module';
 
 @Module({
   imports: [
@@ -20,6 +21,7 @@ import { User } from './entities/user.entity';
       entities: [School, Class, Plan, Student, User],
       synchronize: true,
     }),
+    PlanModule,
   ],
   controllers: [AppController],
   providers: [AppService],
