@@ -7,7 +7,7 @@ import {
   Put,
 } from '@nestjs/common';
 import { PlatformOwnerService } from './platformOwner.service';
-import { ZodValidationPipe } from 'src/zodValidationPipe';
+import { ZodValidationPipe } from 'src/common/pipes/zodValidationPipe';
 import updatePlatformOwnerSchema from './dto/updatePlatformOwner.dto';
 import type { UpdatePlatformOwnerDto } from './dto/updatePlatformOwner.dto';
 
