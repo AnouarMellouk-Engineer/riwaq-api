@@ -1,11 +1,10 @@
 import { Module } from '@nestjs/common';
-import { TypeOrmModule } from '@nestjs/typeorm';
-import { User } from './user.entity';
 import { PlatformOwnerController } from './platformOwner/platformOwner.controller';
 import { PlatformOwnerService } from './platformOwner/platformOwner.service';
+import { PlatformOwnerModule } from './platformOwner/platformOwner.module';
 
 @Module({
-  imports: [TypeOrmModule.forFeature([User])],
+  imports: [PlatformOwnerModule],
   controllers: [PlatformOwnerController],
   providers: [PlatformOwnerService],
 })
