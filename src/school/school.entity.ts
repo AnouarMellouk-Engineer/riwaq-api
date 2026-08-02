@@ -6,7 +6,7 @@ import {
   OneToMany,
   PrimaryGeneratedColumn,
 } from 'typeorm';
-import { Plan } from './plan.entity';
+import { Plan } from 'src/plan/plan.entity';
 import { Class } from './class.entity';
 
 export enum SchoolStatus {

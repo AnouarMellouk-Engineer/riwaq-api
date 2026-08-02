@@ -1,5 +1,5 @@
 import * as z from 'zod';
-import { SchoolStatus } from 'src/entities/school.entity';
+import { SchoolStatus } from '../school.entity';
 
 const schoolSchema = z.object({
   name: z

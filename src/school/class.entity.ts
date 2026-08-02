@@ -6,7 +6,7 @@ import {
   PrimaryGeneratedColumn,
 } from 'typeorm';
 import { School } from './school.entity';
-import { User } from './user.entity';
+import { User } from 'src/user/user.entity';
 
 export enum Level {
   PRIMARY = 'primary',

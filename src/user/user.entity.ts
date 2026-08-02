@@ -7,8 +7,8 @@ import {
   PrimaryGeneratedColumn,
   Unique,
 } from 'typeorm';
-import { School } from './school.entity';
-import { Class } from './class.entity';
+import { School } from 'src/school/school.entity';
+import { Class } from 'src/school/class.entity';
 
 export enum Role {
   PLATFORM_ADMIN = 'platform_admin',
