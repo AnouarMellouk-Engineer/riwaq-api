@@ -6,15 +6,15 @@ import {
 } from '@nestjs/common';
 import { CreatePlanDto } from './dto/plan.dto';
 import { InjectRepository } from '@nestjs/typeorm';
-import { Plan } from 'src/entities/plan.entity';
+import { Plan } from './plan.entity';
 import { Repository } from 'typeorm';
-import { School } from 'src/entities/school.entity';
+import { SchoolService } from 'src/school/school.service';
 
 @Injectable()
 export class PlanService {
   constructor(
     @InjectRepository(Plan) private planRepo: Repository<Plan>,
-    @InjectRepository(School) private schoolRepo: Repository<School>,
+    private schoolService: SchoolService,
   ) {}
 
   async add(createPlanDto: CreatePlanDto) {
@@ -54,13 +54,9 @@ export class PlanService {
   }
 
   async delete(id: string) {
-    const school = await this.schoolRepo.findOneBy({
-      plan: {
-        id: id,
-      },
-    });
+    const inUse = await this.schoolService.existsByPlanId(id);
 
-    if (school) {
+    if (inUse) {
       throw new ConflictException();
     }
 

@@ -1,6 +1,6 @@
 import { Injectable, NotFoundException } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
-import { School } from 'src/entities/school.entity';
+import { School } from './school.entity';
 import { Repository } from 'typeorm';
 import type { CreateSchoolDto } from './dto/school.dto';
 
@@ -52,5 +52,9 @@ export class SchoolService {
     }
 
     return await this.schoolRepo.delete({ slug });
+  }
+
+  async existsByPlanId(planId: string): Promise<boolean> {
+    return this.schoolRepo.existsBy({ plan: { id: planId } });
   }
 }
