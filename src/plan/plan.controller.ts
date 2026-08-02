@@ -12,7 +12,7 @@ import {
 import type { CreatePlanDto } from './dto/plan.dto';
 import { PlanService } from './plan.service';
 import planSchema from './dto/plan.dto';
-import { ZodValidationPipe } from 'src/zodValidationPipe';
+import { ZodValidationPipe } from 'src/common/pipes/zodValidationPipe';
 
 @Controller('plans')
 export class PlanController {

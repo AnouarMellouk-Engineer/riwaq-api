@@ -10,7 +10,7 @@ import {
 } from '@nestjs/common';
 import { SchoolService } from './school.service';
 import type { CreateSchoolDto } from './dto/school.dto';
-import { ZodValidationPipe } from 'src/zodValidationPipe';
+import { ZodValidationPipe } from 'src/common/pipes/zodValidationPipe';
 import schoolSchema from './dto/school.dto';
 
 @Controller('schools')
