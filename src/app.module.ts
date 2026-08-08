@@ -9,6 +9,7 @@ import { User } from './user/user.entity';
 import { SchoolModule } from './school/school.module';
 import { PlanModule } from './plan/plan.module';
 import { UserModule } from './user/user.module';
+import { StudentModule } from './student/student.module';
 
 @Module({
   imports: [
@@ -25,6 +26,7 @@ import { UserModule } from './user/user.module';
     SchoolModule,
     PlanModule,
     UserModule,
+    StudentModule,
   ],
   controllers: [],
   providers: [],
