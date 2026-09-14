@@ -34,7 +34,7 @@ export class User {
   @Column({ type: 'varchar', nullable: true })
   avatar_url!: string;
 
-  @Column({ type: 'varchar', select: false })
+  @Column({ type: 'varchar', select: false, nullable: true })
   password!: string;
 
   @Column({ type: 'enum', enum: Role, default: Role.PARENT })
