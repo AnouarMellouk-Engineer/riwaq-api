@@ -1,8 +1,8 @@
 import { Module } from '@nestjs/common';
 import { ConfigModule, ConfigService } from '@nestjs/config';
 import { TypeOrmModule } from '@nestjs/typeorm';
-import { School } from './database/school.entity';
-import { User } from './database/user.entity';
+import { UserModule } from './modules/user/user.module';
+import { SchoolModule } from './modules/school/school.module';
 
 @Module({
   imports: [
@@ -22,8 +22,8 @@ import { User } from './database/user.entity';
         synchronize: configService.get<string>('NODE_ENV') !== 'production',
       }),
     }),
+    UserModule,
+    SchoolModule,
   ],
-  controllers: [],
-  providers: [],
 })
 export class AppModule {}
