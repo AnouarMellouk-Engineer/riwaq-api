@@ -49,6 +49,9 @@ export class User {
   @Column({ type: 'varchar' })
   phone_number!: string;
 
+  @Column({ nullable: true, type: 'text' })
+  refreshTokenHash!: string | null;
+
   @ManyToOne(() => School, (school) => school.users, {
     onDelete: 'CASCADE',
     nullable: true,

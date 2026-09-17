@@ -9,5 +9,6 @@ import { SchoolModule } from 'src/modules/school/school.module';
   imports: [TypeOrmModule.forFeature([User])],
   controllers: [SchoolOwnerController],
   providers: [SchoolOwnerService],
+  exports: [SchoolOwnerService],
 })
 export class SchoolOwnerModule {}
