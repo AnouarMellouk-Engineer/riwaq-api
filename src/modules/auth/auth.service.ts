@@ -29,6 +29,7 @@ export class AuthService {
       email: user.email,
       username: user.username,
       role: user.role,
+      schoolSlug: user.school.slug,
     };
   }
 
@@ -37,9 +38,15 @@ export class AuthService {
     email: string;
     username: string;
     role: Role;
+    schoolSlug: string;
   }) {
     const payload = {
-      sub: { id: user.id, email: user.email, role: user.role },
+      sub: {
+        id: user.id,
+        email: user.email,
+        role: user.role,
+        schoolSlug: user.schoolSlug,
+      },
       username: user.username,
     };
 
@@ -70,6 +77,7 @@ export class AuthService {
         id: string;
         email: string;
         role: Role;
+        schoolSlug: string;
       };
       username: string;
     },

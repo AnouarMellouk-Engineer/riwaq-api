@@ -34,7 +34,12 @@ export class AuthController {
   @UseGuards(RefreshJwtAuthGuard)
   refresh(@Req() req) {
     const payload = {
-      sub: { id: req.user.id, email: req.user.email, role: req.user.role },
+      sub: {
+        id: req.user.id,
+        email: req.user.email,
+        role: req.user.role,
+        schoolSlug: req.user.schoolSlug,
+      },
       username: req.user.username,
     };
     return this.authservice.refresh(payload, req.user.refreshToken);

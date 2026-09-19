@@ -25,6 +25,7 @@ export class JwtRefreshStrategy extends PassportStrategy(
       email: payload.sub.email,
       role: payload.sub.role,
       username: payload.username,
+      schoolSlug: payload.sub.schoolSlug,
       refreshToken,
     };
   }
