@@ -8,7 +8,6 @@ import {
   Patch,
   Post,
   Put,
-  Query,
   UseGuards,
 } from '@nestjs/common';
 import { Role } from 'src/database/enums';
@@ -62,8 +61,6 @@ export class AdminController {
     return this.adminService.modify(user.schoolSlug, adminId, dto);
   }
 
-  // NOTE: the original spec had this on `@Put(':adminId')`, duplicating the
-  // `modify` route — Nest would only ever hit the first match. Moved to
   // PATCH on a dedicated sub-path instead.
   @Patch(':adminId/status')
   changeStatus(
