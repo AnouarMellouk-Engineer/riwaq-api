@@ -1,5 +1,6 @@
 import { z } from 'zod';
 import { ModuleName } from 'src/database/enums';
+import { createZodDto } from 'nestjs-zod';
 
 export const createTeacherSchema = z.object({
   first_name: z.string().min(2).max(50),
@@ -11,4 +12,6 @@ export const createTeacherSchema = z.object({
   modules: z.array(z.nativeEnum(ModuleName)).optional(),
 });
 
-export type CreateTeacherDto = z.infer<typeof createTeacherSchema>;
+// export type CreateTeacherDto = z.infer<typeof createTeacherSchema>;
+
+export class CreateTeacherDto extends createZodDto(createTeacherSchema) {}

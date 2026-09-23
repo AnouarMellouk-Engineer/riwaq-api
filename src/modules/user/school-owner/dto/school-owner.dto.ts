@@ -1,6 +1,7 @@
 // src/school-owner/dto/school-owner.schema.ts
 import { z } from 'zod';
 import { CreateSchoolSchema } from 'src/modules/school/dto/school.dto';
+import { createZodDto } from 'nestjs-zod';
 
 export const CreateSchoolOwnerSchema = z.object({
   first_name: z.string().min(1, 'First name is required').max(100),
@@ -21,4 +22,8 @@ export const CreateSchoolOwnerSchema = z.object({
   school: CreateSchoolSchema,
 });
 
-export type CreateSchoolOwnerDto = z.infer<typeof CreateSchoolOwnerSchema>;
+// export type CreateSchoolOwnerDto = z.infer<typeof CreateSchoolOwnerSchema>;
+
+export class CreateSchoolOwnerDto extends createZodDto(
+  CreateSchoolOwnerSchema,
+) {}

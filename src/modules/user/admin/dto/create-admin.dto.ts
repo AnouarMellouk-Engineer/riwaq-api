@@ -1,3 +1,4 @@
+import { createZodDto } from 'nestjs-zod';
 import { z } from 'zod';
 
 export const createAdminSchema = z.object({
@@ -9,4 +10,5 @@ export const createAdminSchema = z.object({
   phone_number: z.string().min(6).max(20),
 });
 
-export type CreateAdminDto = z.infer<typeof createAdminSchema>;
+// export type CreateAdminDto = z.infer<typeof createAdminSchema>;
+export class CreateAdminDto extends createZodDto(createAdminSchema) {}

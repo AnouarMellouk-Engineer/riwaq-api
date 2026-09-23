@@ -15,18 +15,19 @@ import { ModuleName, Role } from 'src/database/enums';
 import { Roles } from 'src/modules/auth/decorators/roles.decorator';
 import { JwtAuthGuard } from 'src/modules/auth/guards/jwt-auth.guard';
 import { RolesGuard } from 'src/modules/auth/guards/roles.guard';
-import { ZodValidationPipe } from 'src/common/pipes/zodValidation.pipe';
+
+import { ZodValidationPipe } from 'nestjs-zod';
 import { TeacherService } from './teacher.service';
 import { CurrentUser } from '../decorators/current-user.decorator';
 import type { AuthenticatedUser } from '../decorators/current-user.decorator';
-import { createTeacherSchema } from './dto/create-teacher.dto';
-import type { CreateTeacherDto } from './dto/create-teacher.dto';
+
+import { CreateTeacherDto } from './dto/create-teacher.dto';
 import { updateTeacherSchema } from './dto/update-teacher.dto';
-import type { UpdateTeacherDto } from './dto/update-teacher.dto';
+import { UpdateTeacherDto } from './dto/update-teacher.dto';
 import { changeStatusSchema } from '../admin/dto/change-status.dto';
-import type { ChangeStatusDto } from '../admin/dto/change-status.dto';
+import { ChangeStatusDto } from '../admin/dto/change-status.dto';
 import { addModuleSchema } from './dto/add-module.dto';
-import type { AddModuleDto } from './dto/add-module.dto';
+import { AddModuleDto } from './dto/add-module.dto';
 
 @Controller('users/teachers')
 @Roles([Role.ADMIN, Role.SCHOOL_OWNER])
@@ -50,7 +51,7 @@ export class TeacherController {
   @Post()
   add(
     @CurrentUser() user: AuthenticatedUser,
-    @Body(new ZodValidationPipe(createTeacherSchema)) dto: CreateTeacherDto,
+    @Body(ZodValidationPipe) dto: CreateTeacherDto,
   ) {
     return this.teacherService.create(user.schoolSlug, dto);
   }
@@ -59,7 +60,7 @@ export class TeacherController {
   modify(
     @CurrentUser() user: AuthenticatedUser,
     @Param('teacherId', ParseUUIDPipe) teacherId: string,
-    @Body(new ZodValidationPipe(updateTeacherSchema)) dto: UpdateTeacherDto,
+    @Body(ZodValidationPipe) dto: UpdateTeacherDto,
   ) {
     return this.teacherService.modify(user.schoolSlug, teacherId, dto);
   }
@@ -68,7 +69,7 @@ export class TeacherController {
   changeStatus(
     @CurrentUser() user: AuthenticatedUser,
     @Param('teacherId', ParseUUIDPipe) teacherId: string,
-    @Body(new ZodValidationPipe(changeStatusSchema)) dto: ChangeStatusDto,
+    @Body(ZodValidationPipe) dto: ChangeStatusDto,
   ) {
     return this.teacherService.changeStatus(user.schoolSlug, teacherId, dto);
   }
@@ -85,7 +86,7 @@ export class TeacherController {
   addModule(
     @CurrentUser() user: AuthenticatedUser,
     @Param('teacherId', ParseUUIDPipe) teacherId: string,
-    @Body(new ZodValidationPipe(addModuleSchema)) dto: AddModuleDto,
+    @Body(ZodValidationPipe) dto: AddModuleDto,
   ) {
     return this.teacherService.addModule(user.schoolSlug, teacherId, dto);
   }

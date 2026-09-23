@@ -10,14 +10,16 @@ import {
 } from '@nestjs/common';
 import { SchoolOwnerService } from './school-owner.service';
 import {
+  CreateSchoolOwnerDto,
   CreateSchoolOwnerSchema,
-  type CreateSchoolOwnerDto,
 } from './dto/school-owner.dto';
-import { ZodValidationPipe } from 'src/common/pipes/zodValidation.pipe';
+// import { ZodValidationPipe } from 'src/common/pipes/zodValidation.pipe';
+import { ZodValidationPipe } from 'nestjs-zod';
 import { Role } from 'src/database/enums';
 import { Roles } from 'src/modules/auth/decorators/roles.decorator';
 import { JwtAuthGuard } from 'src/modules/auth/guards/jwt-auth.guard';
 import { RolesGuard } from 'src/modules/auth/guards/roles.guard';
+import { ApiBody } from '@nestjs/swagger';
 
 @Controller('users/school-owners')
 export class SchoolOwnerController {
@@ -33,8 +35,9 @@ export class SchoolOwnerController {
   @Post()
   @Roles([Role.PLATFORM_OWNER])
   @UseGuards(JwtAuthGuard, RolesGuard)
+  @ApiBody({ type: CreateSchoolOwnerDto })
   create(
-    @Body(new ZodValidationPipe(CreateSchoolOwnerSchema))
+    @Body(ZodValidationPipe)
     dto: CreateSchoolOwnerDto,
   ) {
     return this.schoolOwnerService.create(dto);

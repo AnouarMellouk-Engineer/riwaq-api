@@ -14,16 +14,13 @@ import { Role } from 'src/database/enums';
 import { Roles } from 'src/modules/auth/decorators/roles.decorator';
 import { JwtAuthGuard } from 'src/modules/auth/guards/jwt-auth.guard';
 import { RolesGuard } from 'src/modules/auth/guards/roles.guard';
-import { ZodValidationPipe } from 'src/common/pipes/zodValidation.pipe';
+import { ZodValidationPipe } from 'nestjs-zod';
 import { AdminService } from './admin.service';
 import { CurrentUser } from '../decorators/current-user.decorator';
 import type { AuthenticatedUser } from '../decorators/current-user.decorator';
-import type { CreateAdminDto } from './dto/create-admin.dto';
-import type { UpdateAdminDto } from './dto/update-admin.dto';
-import type { ChangeStatusDto } from './dto/change-status.dto';
-import { createAdminSchema } from './dto/create-admin.dto';
-import { updateAdminSchema } from './dto/update-admin.dto';
-import { changeStatusSchema } from './dto/change-status.dto';
+import { CreateAdminDto } from './dto/create-admin.dto';
+import { UpdateAdminDto } from './dto/update-admin.dto';
+import { ChangeStatusDto } from './dto/change-status.dto';
 
 @Controller('users/admins')
 @Roles([Role.SCHOOL_OWNER])
@@ -47,7 +44,7 @@ export class AdminController {
   @Post()
   create(
     @CurrentUser() user: AuthenticatedUser,
-    @Body(new ZodValidationPipe(createAdminSchema)) dto: CreateAdminDto,
+    @Body(ZodValidationPipe) dto: CreateAdminDto,
   ) {
     return this.adminService.create(user.schoolSlug, dto);
   }
@@ -56,7 +53,7 @@ export class AdminController {
   modify(
     @CurrentUser() user: AuthenticatedUser,
     @Param('adminId', ParseUUIDPipe) adminId: string,
-    @Body(new ZodValidationPipe(updateAdminSchema)) dto: UpdateAdminDto,
+    @Body(ZodValidationPipe) dto: UpdateAdminDto,
   ) {
     return this.adminService.modify(user.schoolSlug, adminId, dto);
   }
@@ -66,7 +63,7 @@ export class AdminController {
   changeStatus(
     @CurrentUser() user: AuthenticatedUser,
     @Param('adminId', ParseUUIDPipe) adminId: string,
-    @Body(new ZodValidationPipe(changeStatusSchema)) dto: ChangeStatusDto,
+    @Body(ZodValidationPipe) dto: ChangeStatusDto,
   ) {
     return this.adminService.changeStatus(user.schoolSlug, adminId, dto);
   }

@@ -1,8 +1,8 @@
 import { Body, Controller, Get, Post, Req, UseGuards } from '@nestjs/common';
 import { SchoolOwnerService } from '../user/school-owner/school-owner.service';
-import { ZodValidationPipe } from 'src/common/pipes/zodValidation.pipe';
-import { CreateSchoolOwnerSchema } from '../user/school-owner/dto/school-owner.dto';
-import type { CreateSchoolOwnerDto } from '../user/school-owner/dto/school-owner.dto';
+import { ZodValidationPipe } from 'nestjs-zod';
+
+import { CreateSchoolOwnerDto } from '../user/school-owner/dto/school-owner.dto';
 
 import { LocalAuthGuard } from './guards/loca-auth.guard';
 import { AuthService } from './auth.service';
@@ -18,7 +18,7 @@ export class AuthController {
 
   @Post('register')
   register(
-    @Body(new ZodValidationPipe(CreateSchoolOwnerSchema))
+    @Body(ZodValidationPipe)
     dto: CreateSchoolOwnerDto,
   ) {
     return this.schoolOwnerService.create(dto);
