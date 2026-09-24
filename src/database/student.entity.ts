@@ -41,8 +41,11 @@ export class Student {
   })
   school!: School;
 
-  @ManyToOne(() => User, (user) => user.children, { onDelete: 'CASCADE' })
-  parent!: User;
+  @ManyToOne(() => User, (user) => user.children, {
+    onDelete: 'SET NULL',
+    nullable: true,
+  })
+  parent!: User | null;
 
   @ManyToOne(() => ClassEntity, (classEntity) => classEntity.students, {
     onDelete: 'CASCADE',
