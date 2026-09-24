@@ -35,6 +35,22 @@ export class TeacherService {
     return school.id;
   }
 
+  private async generateUsername(firstName: string, lastName: string) {
+    const base = `${firstName}.${lastName}`
+      .toLowerCase()
+      .normalize('NFD')
+      .replace(/[\u0300-\u036f]/g, '')
+      .replace(/[^a-z0-9.]/g, '');
+
+    let username = base;
+    let suffix = 0;
+    while (await this.userRepository.exists({ where: { username } })) {
+      suffix += 1;
+      username = `${base}${suffix}`;
+    }
+    return username;
+  }
+
   async findAll(schoolSlug: string): Promise<User[]> {
     const schoolId = await this.resolveSchoolId(schoolSlug);
 
@@ -78,8 +94,10 @@ export class TeacherService {
       );
     }
 
+    const username = await this.generateUsername(dto.first_name, dto.last_name);
     const teacher = this.userRepository.create({
       ...profile,
+      username: username,
       role: Role.TEACHER,
       status: UserStatus.INVITED,
       school_id: schoolId,

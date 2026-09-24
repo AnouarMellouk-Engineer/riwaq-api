@@ -6,6 +6,4 @@ export const addModuleSchema = z.object({
   module: z.nativeEnum(ModuleName),
 });
 
-// export type AddModuleDto = z.infer<typeof addModuleSchema>;
-
 export class AddModuleDto extends createZodDto(addModuleSchema) {}
