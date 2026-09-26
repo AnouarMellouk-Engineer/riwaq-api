@@ -55,7 +55,6 @@ export class AdminService {
     if (!admin) {
       throw new NotFoundException('Admin not found');
     }
-
     return admin;
   }
 

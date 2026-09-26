@@ -3,7 +3,6 @@ import {
   PrimaryGeneratedColumn,
   Column,
   ManyToOne,
-  JoinColumn,
   OneToMany,
 } from 'typeorm';
 import { Grade } from './enums';

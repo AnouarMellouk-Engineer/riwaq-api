@@ -8,7 +8,7 @@ export interface AuthenticatedUser {
   role: Role;
   schoolSlug: string;
 }
-
+// you can use this decorator in every protected endpoint to extract data from the user (multi tenant)
 export const CurrentUser = createParamDecorator(
   (_data: unknown, ctx: ExecutionContext): AuthenticatedUser => {
     const request = ctx.switchToHttp().getRequest();
