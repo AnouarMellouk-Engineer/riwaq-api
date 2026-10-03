@@ -1,4 +1,3 @@
-// src/school/dto/school.schema.ts
 import { createZodDto } from 'nestjs-zod';
 import { z } from 'zod';
 
@@ -14,5 +13,4 @@ export const CreateSchoolSchema = z.object({
     ),
 });
 
-// export type CreateSchoolDto = z.infer<typeof CreateSchoolSchema>;
 export class CreateSchoolDto extends createZodDto(CreateSchoolSchema) {}

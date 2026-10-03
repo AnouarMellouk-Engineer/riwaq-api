@@ -9,11 +9,7 @@ import {
   UseGuards,
 } from '@nestjs/common';
 import { SchoolOwnerService } from './school-owner.service';
-import {
-  CreateSchoolOwnerDto,
-  CreateSchoolOwnerSchema,
-} from './dto/school-owner.dto';
-// import { ZodValidationPipe } from 'src/common/pipes/zodValidation.pipe';
+import { CreateSchoolOwnerDto } from './dto/school-owner.dto';
 import { ZodValidationPipe } from 'nestjs-zod';
 import { Role } from 'src/database/enums';
 import { Roles } from 'src/modules/auth/decorators/roles.decorator';
